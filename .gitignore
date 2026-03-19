@@ -1,0 +1,22 @@
+# Pasta de arquivos compilados
+bin/
+
+# Arquivos compilados Java
+*.class
+
+# Logs
+*.log
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+#Arquivo de senha
+.env
+
+#Arquivos de compilação do Maven
+target/
+
+#IDE
+.vscode/
+.idea/
