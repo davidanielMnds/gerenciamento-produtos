@@ -92,13 +92,32 @@ public class ProdutoDAO {
         return false;
     }
     
+    //--------------------------ADICIONAR PRODUTO----------------
+    public void adicionarProduto(String nome, int quantidade, double preco)
+    {
+        String sql = "INSERT INTO produtos (nome, quantidade, preco) VALUES (?, ?, ?)";
+        try (Connection conn = ConnectionFactory.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setString(1, nome);
+            stmt.setInt(2, quantidade);
+            stmt.setDouble(3, preco);
+            stmt.executeUpdate();
+        } catch (SQLException e)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
+        }
+    }
+    
+    
+    
     
 }
 /*
 --------------------------METODOS PARA ADICIONAR--------------------
-public Produto getProduto(Integer id)
-public boolean produtoExiste(Integer id)
-public boolean produtoExiste(String nome)
+public Produto getProduto(Integer id) X
+public boolean produtoExiste(Integer id) X
+public boolean produtoExiste(String nome) X
 public void adicionarProduto(String nome, int quantidade, double preco)
 public List<Produto> lerProdutos()
 public atualizarProduto(Integer id, String novoNome)
