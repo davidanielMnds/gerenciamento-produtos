@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import model.Produto;
@@ -111,6 +113,30 @@ public class ProdutoDAO {
             stmt.executeUpdate();
             
         }
+    }
+    
+    //--------------------------LISTAR PRODUTOS----------------------
+    public List<Produto> listarProdutos() throws SQLException
+    {
+        String sql = "SELECT * FROM produtos";
+        List<Produto> lista = new ArrayList<>();
+        try (Connection conn = ConnectionFactory.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            try(ResultSet rs = stmt.executeQuery())
+            {
+                while(rs.next())
+                {
+                    Produto p = new Produto(
+                            rs.getString("nome"),
+                            rs.getInt("quantidade"),
+                            rs.getDouble("preco")
+                    );
+                    lista.add(p);     
+                }
+            }
+        }
+        return lista;
     }
     
     //--------------------------DELETAR PRODUTO----------------------
