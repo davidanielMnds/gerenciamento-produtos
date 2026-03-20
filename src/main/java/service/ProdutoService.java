@@ -1,6 +1,7 @@
 package service;
 import exception.ProdutoDuplicadoException;
 import exception.ProdutoNaoEncontradoException;
+import java.sql.SQLException;
 import model.Produto;
 import repository.ProdutoDAO;
 
@@ -22,6 +23,8 @@ public class ProdutoService {
     }
     
     //--------------------------MÉTODOS--------------------
+    
+    //--------------------------GET PRODUTO--------------------
     public Produto getProduto(Integer id) throws ProdutoNaoEncontradoException
     {
         Produto produto = ProdutoDAO.getInstance().getProduto(id);
@@ -29,17 +32,27 @@ public class ProdutoService {
         return produto;
     }
     
+    //--------------------PRODUTO EXISTE -BOOLEAN -INTEGER--------------------
+    public boolean produtoExiste(Integer id) throws SQLException
+    {
+        Produto produto = ProdutoDAO.getInstance().getProduto(id);
+        if (produto==null) {return false;}
+        return true;
+    }
+    
+    
+    
 }
 
 /*
 --------------------------METODOS PARA VERIFICAR--------------------
 public Produto getProduto(Integer id) X
-public boolean produtoExiste(Integer id) X
-public boolean produtoExiste(String nome) X
+public boolean produtoExiste(Integer id) 
+public boolean produtoExiste(String nome) 
 --------------------------METODOS PARA ADICIONAR--------------------
-public void adicionarProduto(String nome, int quantidade, double preco) X
+public void adicionarProduto(String nome, int quantidade, double preco) 
 public List<Produto> lerProdutos()
-public atualizarProduto(Produto produtoAtualizado, Integer id)X
+public atualizarProduto(Produto produtoAtualizado, Integer id)
 {
     cria produto novo
     coloca as mesmas informações
@@ -47,5 +60,5 @@ public atualizarProduto(Produto produtoAtualizado, Integer id)X
     muda
     atualiza tudo mas continua igual oq for blank    
 }
-public void deletarProduto(Integer id) X
+public void deletarProduto(Integer id) 
 */
