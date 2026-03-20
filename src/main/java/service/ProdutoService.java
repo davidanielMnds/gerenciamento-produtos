@@ -22,9 +22,9 @@ public class ProdutoService {
         return instance;
     }
     
-    //--------------------------MÉTODOS--------------------
+    //--------------------MÉTODOS--------------------------------------------
     
-    //--------------------------GET PRODUTO--------------------
+    //--------------------GET PRODUTO----------------------------------------
     public Produto getProduto(Integer id) throws ProdutoNaoEncontradoException
     {
         Produto produto = ProdutoDAO.getInstance().getProduto(id);
@@ -44,6 +44,13 @@ public class ProdutoService {
         return ProdutoDAO.getInstance().produtoExiste(nome);
     }
     
+    //--------------------ADICIONAR PRODUTO----------------------------------
+    public void adicionarProduto(String nome, int quantidade, double preco)
+            throws ProdutoDuplicadoException, SQLException
+    {
+        if(produtoExiste(nome)) {throw new ProdutoDuplicadoException(nome);}
+        ProdutoDAO.getInstance().adicionarProduto(nome, quantidade, preco);
+    }
     
     
 }
@@ -52,7 +59,7 @@ public class ProdutoService {
 --------------------------METODOS PARA VERIFICAR--------------------
 public Produto getProduto(Integer id) X
 public boolean produtoExiste(Integer id) X
-public boolean produtoExiste(String nome) 
+public boolean produtoExiste(String nome) X
 --------------------------METODOS PARA ADICIONAR--------------------
 public void adicionarProduto(String nome, int quantidade, double preco) 
 public List<Produto> lerProdutos()
