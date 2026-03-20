@@ -128,6 +128,22 @@ public class ProdutoDAO {
         }
     }
     
+    //--------------------------DELETAR PRODUTO----------------------
+    public void deletarProduto(Integer id)
+    {
+        String sql = "DELETE FROM produtos WHERE id = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
+        }
+    }
+    
+    
     
     
     
@@ -140,7 +156,7 @@ public boolean produtoExiste(Integer id) X
 public boolean produtoExiste(String nome) X
 public void adicionarProduto(String nome, int quantidade, double preco) X
 public List<Produto> lerProdutos()
-public atualizarProduto(Produto produtoAtualizado, Integer id)
+public atualizarProduto(Produto produtoAtualizado, Integer id)X
 {
     cria produto novo
     coloca as mesmas informações
@@ -148,7 +164,7 @@ public atualizarProduto(Produto produtoAtualizado, Integer id)
     muda
     atualiza tudo mas continua igual oq for blank    
 }
-public void deletarProduto(Integer id)
+public void deletarProduto(Integer id) X
 
     
 
