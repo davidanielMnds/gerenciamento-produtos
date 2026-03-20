@@ -1,20 +1,32 @@
 package service;
 import exception.ProdutoDuplicadoException;
 import exception.ProdutoNaoEncontradoException;
+import model.Produto;
+import repository.ProdutoDAO;
 
 public class ProdutoService {
     //--------------------------ATRIBUTO--------------------
     private static ProdutoService instance;
+    
     //--------------------------CONSTRUTOR--------------------
     public ProdutoService() {}
+    
     //--------------------------SINGLETON--------------------
     public static ProdutoService getInstance()
     {
-        if(instance==nul)
+        if(instance==null)
         {
             return new ProdutoService();
         }
         return instance;
+    }
+    
+    //--------------------------MÉTODOS--------------------
+    public Produto getProduto(Integer id) throws ProdutoNaoEncontradoException
+    {
+        Produto produto = ProdutoDAO.getInstance().getProduto(id);
+        if(produto==null) {throw new ProdutoNaoEncontradoException(id);}
+        return produto;
     }
     
 }
