@@ -141,34 +141,5 @@ public class ProdutoDAO {
         {
             JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
         }
-    }
-    
-    
-    
-    
-    
-    
+    }    
 }
-/*
---------------------------METODOS PARA ADICIONAR--------------------
-public Produto getProduto(Integer id) X
-public boolean produtoExiste(Integer id) X
-public boolean produtoExiste(String nome) X
-public void adicionarProduto(String nome, int quantidade, double preco) X
-public List<Produto> lerProdutos()
-public atualizarProduto(Produto produtoAtualizado, Integer id)X
-{
-    cria produto novo
-    coloca as mesmas informações
-    if !isBlank()
-    muda
-    atualiza tudo mas continua igual oq for blank    
-}
-public void deletarProduto(Integer id) X
-
-    
-
-
-
-
-*/
