@@ -2,6 +2,7 @@ package service;
 import exception.ProdutoDuplicadoException;
 import exception.ProdutoNaoEncontradoException;
 import java.sql.SQLException;
+import java.util.List;
 import model.Produto;
 import repository.ProdutoDAO;
 
@@ -25,7 +26,7 @@ public class ProdutoService {
     //--------------------MÉTODOS--------------------------------------------
     
     //--------------------GET PRODUTO----------------------------------------
-    public Produto getProduto(Integer id) throws ProdutoNaoEncontradoException
+    public Produto getProduto(Integer id) throws ProdutoNaoEncontradoException, SQLException
     {
         Produto produto = ProdutoDAO.getInstance().getProduto(id);
         if(produto==null) {throw new ProdutoNaoEncontradoException(id);}
@@ -52,6 +53,12 @@ public class ProdutoService {
         ProdutoDAO.getInstance().adicionarProduto(nome, quantidade, preco);
     }
     
+    public List<Produto> listarProdutos() throws SQLException
+    {
+        return ProdutoDAO.getInstance().listarProdutos();
+    }
+    
+    
     
 }
 
@@ -61,8 +68,8 @@ public Produto getProduto(Integer id) X
 public boolean produtoExiste(Integer id) X
 public boolean produtoExiste(String nome) X
 --------------------------METODOS PARA ADICIONAR--------------------
-public void adicionarProduto(String nome, int quantidade, double preco) 
-public List<Produto> lerProdutos()
+public void adicionarProduto(String nome, int quantidade, double preco) X
+public List<Produto> listarProdutos() X
 public atualizarProduto(Produto produtoAtualizado, Integer id)
 {
     cria produto novo
