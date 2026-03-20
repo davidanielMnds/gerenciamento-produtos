@@ -109,6 +109,26 @@ public class ProdutoDAO {
         }
     }
     
+    //--------------------------ATUALIZAR PRODUTO----------------------
+    public void atualizarProtudo(Produto produtoAtualizado, Integer id)
+    {
+        String sql = "UPDATE produtos SET nome = ?, quantidade = ?, preco = ? WHERE id = ?";
+        try (Connection conn = ConnectionFactory.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setString(1, produtoAtualizado.getNome());
+            stmt.setInt(2, produtoAtualizado.getQuantidade());
+            stmt.setDouble(3, produtoAtualizado.getPreco());
+            stmt.setInt(4, id);
+            stmt.executeUpdate();
+            
+        } catch (SQLException e)
+        {
+            JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
+        }
+    }
+    
+    
     
     
     
@@ -118,9 +138,9 @@ public class ProdutoDAO {
 public Produto getProduto(Integer id) X
 public boolean produtoExiste(Integer id) X
 public boolean produtoExiste(String nome) X
-public void adicionarProduto(String nome, int quantidade, double preco)
+public void adicionarProduto(String nome, int quantidade, double preco) X
 public List<Produto> lerProdutos()
-public atualizarProduto(Integer id, String novoNome)
+public atualizarProduto(Produto produtoAtualizado, Integer id)
 {
     cria produto novo
     coloca as mesmas informações
