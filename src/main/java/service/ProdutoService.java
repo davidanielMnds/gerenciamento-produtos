@@ -35,9 +35,13 @@ public class ProdutoService {
     //--------------------PRODUTO EXISTE -BOOLEAN -INTEGER--------------------
     public boolean produtoExiste(Integer id) throws SQLException
     {
-        Produto produto = ProdutoDAO.getInstance().getProduto(id);
-        if (produto==null) {return false;}
-        return true;
+        return ProdutoDAO.getInstance().produtoExiste(id);
+    }
+    
+    //--------------------PRODUTO EXISTE -BOOLEAN -STRING--------------------
+    public boolean produtoExiste(String nome) throws SQLException
+    {
+        return ProdutoDAO.getInstance().produtoExiste(nome);
     }
     
     
@@ -47,7 +51,7 @@ public class ProdutoService {
 /*
 --------------------------METODOS PARA VERIFICAR--------------------
 public Produto getProduto(Integer id) X
-public boolean produtoExiste(Integer id) 
+public boolean produtoExiste(Integer id) X
 public boolean produtoExiste(String nome) 
 --------------------------METODOS PARA ADICIONAR--------------------
 public void adicionarProduto(String nome, int quantidade, double preco) 
