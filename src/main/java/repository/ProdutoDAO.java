@@ -29,7 +29,7 @@ public class ProdutoDAO {
     //--------------------------METODOS--------------------
     
     //--------------------------GET PRODUTO----------------
-    public Produto getProduto(Integer id)
+    public Produto getProduto(Integer id) throws SQLException
     {
         String sql = "SELECT * FROM produtos WHERE id = ?";
         try (Connection conn = ConnectionFactory.getConnection();
@@ -47,15 +47,12 @@ public class ProdutoDAO {
                     return p;
                 }
             }
-        }catch(SQLException e)
-            {
-                JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
-            }
+        }
         return null;
     }
     
     //--------------------------PRODUTOEXISTE -BOOLEAN -INTEGER ----------------
-    public boolean produtoExiste(Integer id)
+    public boolean produtoExiste(Integer id) throws SQLException
     {
         String sql = "SELECT 1 FROM produtos WHERE id = ?";
         try (Connection conn = ConnectionFactory.getConnection();
@@ -66,15 +63,12 @@ public class ProdutoDAO {
             {
                 if(rs.next()) {return true;}
             }
-        } catch (SQLException e)
-        {
-            JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
         }
         return false;
     }
     
     //--------------------------PRODUTOEXISTE -BOOLEAN -STRING ----------------
-    public boolean produtoExiste(String nome)
+    public boolean produtoExiste(String nome) throws SQLException
     {
         String sql = "SELECT 1 FROM produtos WHERE nome = ?";
         try (Connection conn = ConnectionFactory.getConnection();
@@ -85,15 +79,12 @@ public class ProdutoDAO {
             {
                 if(rs.next()) {return true;}
             }
-        } catch (SQLException e)
-        {
-            JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
         }
         return false;
     }
     
     //--------------------------ADICIONAR PRODUTO----------------
-    public void adicionarProduto(String nome, int quantidade, double preco)
+    public void adicionarProduto(String nome, int quantidade, double preco) throws SQLException
     {
         String sql = "INSERT INTO produtos (nome, quantidade, preco) VALUES (?, ?, ?)";
         try (Connection conn = ConnectionFactory.getConnection();
@@ -103,14 +94,11 @@ public class ProdutoDAO {
             stmt.setInt(2, quantidade);
             stmt.setDouble(3, preco);
             stmt.executeUpdate();
-        } catch (SQLException e)
-        {
-            JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
         }
     }
     
     //--------------------------ATUALIZAR PRODUTO----------------------
-    public void atualizarProtudo(Produto produtoAtualizado, Integer id)
+    public void atualizarProtudo(Produto produtoAtualizado, Integer id) throws SQLException
     {
         String sql = "UPDATE produtos SET nome = ?, quantidade = ?, preco = ? WHERE id = ?";
         try (Connection conn = ConnectionFactory.getConnection();
@@ -122,14 +110,11 @@ public class ProdutoDAO {
             stmt.setInt(4, id);
             stmt.executeUpdate();
             
-        } catch (SQLException e)
-        {
-            JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
         }
     }
     
     //--------------------------DELETAR PRODUTO----------------------
-    public void deletarProduto(Integer id)
+    public void deletarProduto(Integer id) throws SQLException
     {
         String sql = "DELETE FROM produtos WHERE id = ?";
         try (Connection conn = ConnectionFactory.getConnection();
@@ -137,9 +122,6 @@ public class ProdutoDAO {
         {
             stmt.setInt(1, id);
             stmt.executeUpdate();
-        } catch (SQLException e)
-        {
-            JOptionPane.showMessageDialog(new JFrame(), e.getMessage());
         }
     }    
 }
