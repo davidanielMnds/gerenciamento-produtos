@@ -108,12 +108,5 @@ public boolean produtoExiste(String nome) X
 public void adicionarProduto(String nome, int quantidade, double preco) X
 public List<Produto> listarProdutos() X
 public atualizarProduto(Produto produtoAtualizado, Integer id) X
-{
-    cria produto novo
-    coloca as mesmas informações
-    if !isBlank()
-    muda
-    atualiza tudo mas continua igual oq for blank    
-}
 public void deletarProduto(Integer id) X
 */
