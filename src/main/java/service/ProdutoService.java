@@ -67,7 +67,6 @@ public class ProdutoService {
             throws ProdutoDuplicadoException, ProdutoNaoEncontradoException,
             PrecoMenor0Exception, QuantidadeMenor0Exception, SQLException, EntradaInvalidaException
     {
-        if(!produtoExiste(id)) {throw new ProdutoNaoEncontradoException(id);}
         Produto produto = getProduto(id);
         //---------------------VERIFICAR NOME---------------------
         if(!nome.isBlank())
@@ -92,7 +91,11 @@ public class ProdutoService {
         ProdutoDAO.getInstance().atualizarProtudo(produto, id);
     }
     
-    
+    public void deletarPrdoduto(Integer id) throws ProdutoNaoEncontradoException, SQLException
+    {
+        if(!produtoExiste(id)) {throw new ProdutoNaoEncontradoException(id);}
+        ProdutoDAO.getInstance().deletarProduto(id);
+    }
     
 }
 
@@ -112,5 +115,5 @@ public atualizarProduto(Produto produtoAtualizado, Integer id) X
     muda
     atualiza tudo mas continua igual oq for blank    
 }
-public void deletarProduto(Integer id) 
+public void deletarProduto(Integer id) X
 */
