@@ -22,7 +22,7 @@ public class ProdutoService {
     {
         if(instance==null)
         {
-            return new ProdutoService();
+            instance = new ProdutoService();
         }
         return instance;
     }

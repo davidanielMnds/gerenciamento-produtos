@@ -23,7 +23,7 @@ public class ProdutoDAO {
     {
         if(instance==null)
         {
-            return new ProdutoDAO();
+            instance = new ProdutoDAO();
         }
         return instance;
     }
@@ -132,6 +132,7 @@ public class ProdutoDAO {
                             rs.getInt("quantidade"),
                             rs.getDouble("preco")
                     );
+                    p.setID(rs.getInt("id"));
                     lista.add(p);     
                 }
             }
