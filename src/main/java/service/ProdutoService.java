@@ -7,6 +7,7 @@ import exception.ProdutoNaoEncontradoException;
 import exception.QuantidadeMenor0Exception;
 import java.sql.SQLException;
 import java.util.List;
+import javax.swing.JOptionPane;
 import model.Produto;
 import repository.ProdutoDAO;
 import util.ConversorService;
@@ -82,10 +83,12 @@ public class ProdutoService {
     }
     
     //------------------------ATUALIZAR PRODUTO--------------------------------
-    public void atualizarProduto(Integer id, String nome, String quantidadeTexto, String precoTexto)
+    public void atualizarProduto(String TXTid, String nome, String quantidadeTexto, String precoTexto)
             throws ProdutoDuplicadoException, ProdutoNaoEncontradoException,
             PrecoMenor0Exception, QuantidadeMenor0Exception, SQLException, EntradaInvalidaException
     {
+        if(TXTid.isBlank()) {throw new EntradaInvalidaException("id");}
+        int id = ConversorService.converterInt(TXTid, "id");
         Produto produto = getProduto(id);
         //---------------------VERIFICAR NOME---------------------
         if(!nome.isBlank())
