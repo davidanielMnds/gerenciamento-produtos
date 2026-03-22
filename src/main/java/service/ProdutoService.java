@@ -7,7 +7,6 @@ import exception.ProdutoNaoEncontradoException;
 import exception.QuantidadeMenor0Exception;
 import java.sql.SQLException;
 import java.util.List;
-import javax.swing.JOptionPane;
 import model.Produto;
 import repository.ProdutoDAO;
 import util.ConversorService;
@@ -110,7 +109,7 @@ public class ProdutoService {
             if (preco < 0) {throw new PrecoMenor0Exception(preco);}
             produto.setPreco(preco);
         }
-        ProdutoDAO.getInstance().atualizarProtudo(produto, id);
+        ProdutoDAO.getInstance().atualizarProduto(produto, id);
     }
     
     //----------------------------------- DELETAR PRODUTO------------------------------------------
@@ -118,18 +117,6 @@ public class ProdutoService {
     {
         if(!produtoExiste(id)) {throw new ProdutoNaoEncontradoException(id);}
         ProdutoDAO.getInstance().deletarProduto(id);
-    }
-    
+    }    
 }
 
-/*
---------------------------METODOS PARA VERIFICAR--------------------
-public Produto getProduto(Integer id) X
-public boolean produtoExiste(Integer id) X
-public boolean produtoExiste(String nome) X
---------------------------METODOS PARA ADICIONAR--------------------
-public void adicionarProduto(String nome, int quantidade, double preco) X
-public List<Produto> listarProdutos() X
-public atualizarProduto(Produto produtoAtualizado, Integer id) X
-public void deletarProduto(Integer id) X
-*/

@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import model.Produto;
 import util.ConnectionFactory;
 
@@ -122,7 +120,7 @@ public class ProdutoDAO {
     }
     
     //--------------------------ATUALIZAR PRODUTO----------------------
-    public void atualizarProtudo(Produto produtoAtualizado, Integer id) throws SQLException
+    public void atualizarProduto(Produto produtoAtualizado, Integer id) throws SQLException
     {
         String sql = "UPDATE produtos SET nome = ?, quantidade = ?, preco = ? WHERE id = ?";
         try (Connection conn = ConnectionFactory.getConnection();
