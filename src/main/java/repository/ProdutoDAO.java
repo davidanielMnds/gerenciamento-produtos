@@ -53,6 +53,27 @@ public class ProdutoDAO {
         return null;
     }
     
+    public List<Produto> listarProdutosPesquisa(String nome) throws SQLException
+    {
+        String sql = "SELECT * FROM produtos WHERE nome LIKE ?";
+        List<Produto> lista = new ArrayList<>();
+        try (Connection conn = ConnectionFactory.getConnection();
+                PreparedStatement stmt = conn.prepareStatement(sql))
+        {
+            stmt.setString(1, nome+"%");
+            try (ResultSet rs = stmt.executeQuery())
+            {
+                while(rs.next())
+                {
+                    Produto p = new Produto(rs.getString("nome"), rs.getInt("quantidade"), rs.getDouble("preco"));
+                    p.setID(rs.getInt("id"));
+                    lista.add(p);
+                }
+            }
+        }
+        return lista;
+    }
+    
     //--------------------------PRODUTOEXISTE -BOOLEAN -INTEGER ----------------
     public boolean produtoExiste(Integer id) throws SQLException
     {
