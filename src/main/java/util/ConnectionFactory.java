@@ -9,7 +9,7 @@ public class ConnectionFactory {
     
     private static final Dotenv dotenv = Dotenv.load();
     
-    private static final String URL = "jdbc:mysql://localhost" 
+    private static final String URL = "jdbc:mysql://localhost:" 
             + dotenv.get("DB_PORT")
             + "/"
             + dotenv.get("DB_NAME");
