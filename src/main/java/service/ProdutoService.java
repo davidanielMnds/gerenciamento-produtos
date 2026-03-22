@@ -93,7 +93,7 @@ public class ProdutoService {
         //---------------------VERIFICAR NOME---------------------
         if(!nome.isBlank())
         {
-            if(produtoExiste(nome)) {throw new ProdutoDuplicadoException(nome);}
+            if(produtoExiste(nome)&& !nome.equals(produto.getNome())) {throw new ProdutoDuplicadoException(nome);}
             produto.setNome(nome);
         }
         //---------------------VERIFICAR QUANTIDADE---------------------
