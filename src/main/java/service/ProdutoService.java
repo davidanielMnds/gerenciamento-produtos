@@ -38,6 +38,13 @@ public class ProdutoService {
         return produto;
     }
     
+    //--------------------LISTAR PRODUTOS PESQUISA---------------------------
+    public List<Produto> listarProdutosPesquisa(String nome) throws SQLException
+    {
+        List<Produto> lista = ProdutoDAO.getInstance().listarProdutosPesquisa(nome);
+        return lista;
+    }
+    
     //--------------------PRODUTO EXISTE -BOOLEAN -INTEGER--------------------
     public boolean produtoExiste(Integer id) throws SQLException
     {

@@ -53,6 +53,7 @@ public class ProdutoDAO {
         return null;
     }
     
+    //---------------------------LISTAR PRODUTOS PESQUISA------
     public List<Produto> listarProdutosPesquisa(String nome) throws SQLException
     {
         String sql = "SELECT * FROM produtos WHERE nome LIKE ?";
