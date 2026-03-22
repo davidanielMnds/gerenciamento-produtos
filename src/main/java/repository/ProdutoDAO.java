@@ -120,6 +120,13 @@ public class ProdutoDAO {
     }
     
     //--------------------------ATUALIZAR PRODUTO----------------------
+
+    /**
+     *
+     * @param produtoAtualizado
+     * @param id
+     * @throws SQLException
+     */
     public void atualizarProduto(Produto produtoAtualizado, Integer id) throws SQLException
     {
         String sql = "UPDATE produtos SET nome = ?, quantidade = ?, preco = ? WHERE id = ?";

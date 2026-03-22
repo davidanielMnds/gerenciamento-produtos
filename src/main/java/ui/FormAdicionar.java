@@ -1,5 +1,7 @@
 package ui;
 
+import exception.PrecoMenor0Exception;
+import exception.QuantidadeMenor0Exception;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import service.ProdutoService;
@@ -127,10 +129,14 @@ public class FormAdicionar extends javax.swing.JPanel {
             ProdutoService.getInstance().adicionarProduto(nome, quantidade, preco);
             JOptionPane.showMessageDialog(this, "O produto foi adicionado");
         }
-        catch (exception.ProdutoDuplicadoException e) {JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
-        catch (exception.EntradaInvalidaException e) {JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
-        catch (exception.NomeVazioException e) {JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
+        catch (exception.ProdutoDuplicadoException 
+                | exception.EntradaInvalidaException 
+                | exception.NomeVazioException 
+                |PrecoMenor0Exception 
+                |QuantidadeMenor0Exception e)
+        {JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
         catch (SQLException e) {JOptionPane.showMessageDialog(this, "Erro: " + e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
+        
     }//GEN-LAST:event_btnAdicionarActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed

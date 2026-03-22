@@ -16,7 +16,7 @@ public class ProdutoService {
     private static ProdutoService instance;
     
     //--------------------------CONSTRUTOR--------------------
-    public ProdutoService() {}
+    private ProdutoService() {}
     
     //--------------------------SINGLETON---------------------
     public static ProdutoService getInstance()
@@ -59,19 +59,23 @@ public class ProdutoService {
     
     //--------------------ADICIONAR PRODUTO ----------------------------------
     public void adicionarProduto(String nome, int quantidade, double preco)
-            throws ProdutoDuplicadoException, SQLException
+            throws ProdutoDuplicadoException, SQLException, QuantidadeMenor0Exception, PrecoMenor0Exception
     {
         if(produtoExiste(nome)) {throw new ProdutoDuplicadoException(nome);}
+        if(quantidade<0) {throw new QuantidadeMenor0Exception(quantidade);}
+        if(preco<0) {throw new PrecoMenor0Exception(preco);}
         ProdutoDAO.getInstance().adicionarProduto(nome, quantidade, preco);
     }
     
-    //---------------------ADICIONAR PRODUTO -STRING-------------------------
+    //---------------------ADICIONAR PRODUTO -ATRIBUTOS EM STRING--------------
     public void adicionarProduto(String nome, String TXTquantidade, String TXTpreco)
-            throws EntradaInvalidaException, ProdutoDuplicadoException, NomeVazioException, SQLException
+            throws EntradaInvalidaException, ProdutoDuplicadoException, NomeVazioException, SQLException, QuantidadeMenor0Exception, PrecoMenor0Exception
     {   
         if(nome.isBlank()) {throw new NomeVazioException();}
         int quantidade = ConversorService.converterInt(TXTquantidade, "quantidade");
         double preco = ConversorService.converterDouble(TXTpreco, "preço");
+        if(quantidade<0) {throw new QuantidadeMenor0Exception(quantidade);}
+        if(preco<0) {throw new PrecoMenor0Exception(preco);}
         adicionarProduto(nome, quantidade, preco);
     }
     

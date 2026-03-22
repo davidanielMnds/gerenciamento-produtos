@@ -2,7 +2,9 @@ package util;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMTGitHubDarkIJTheme;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.GraphicsEnvironment;
+import java.io.IOException;
 import javax.swing.UIManager;
 
 public class UIConfig {
@@ -15,8 +17,7 @@ public class UIConfig {
             ).deriveFont(Font.PLAIN, 13f);
             GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(fonte);
             UIManager.getLookAndFeelDefaults().put("defaultFont", fonte);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (FontFormatException | IOException e) {
         }
     }
 }

@@ -3,25 +3,27 @@ package ui;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import model.Produto;
 import service.ProdutoService;
 
 public class FormProdutos extends javax.swing.JPanel {
-    private DefaultTableModel modelo;
+    private final DefaultTableModel modelo;
     public FormProdutos() {
         initComponents();
         modelo = (DefaultTableModel) tblProdutos.getModel();
         atualizarTabela();
         txtPesquisa.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+        @Override
         public void insertUpdate(javax.swing.event.DocumentEvent e) { filtrarTabela(); }
+        @Override
         public void removeUpdate(javax.swing.event.DocumentEvent e) { filtrarTabela(); }
+        @Override
         public void changedUpdate(javax.swing.event.DocumentEvent e) { filtrarTabela(); }
     });
     }
     //----------------------------MÉTODO ATUALIZAR TABELA------------------------------------
-    public void atualizarTabela()
+    private void atualizarTabela()
     {
         try
         {
@@ -124,8 +126,9 @@ public class FormProdutos extends javax.swing.JPanel {
             ProdutoService.getInstance().deletarProduto(id);
             JOptionPane.showMessageDialog(this, "O produto foi deletado!");
         }
-        catch(SQLException e) {JOptionPane.showMessageDialog(this, "ERRO:" + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);}
-        catch(exception.ProdutoNaoEncontradoException e) {JOptionPane.showMessageDialog(this, "ERRO:" + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);}
+        catch(SQLException 
+                | exception.ProdutoNaoEncontradoException e)
+        {JOptionPane.showMessageDialog(this, "ERRO:" + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);}
     }//GEN-LAST:event_btnDeletarActionPerformed
     
     private void btnAtualizarPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarPaginaActionPerformed

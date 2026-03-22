@@ -8,12 +8,8 @@ import exception.QuantidadeMenor0Exception;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import service.ProdutoService;
-import util.ConversorService;
 
-public class AtualizarProduto extends javax.swing.JFrame {
-    
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AtualizarProduto.class.getName());
-    
+public class AtualizarProduto extends javax.swing.JFrame {    
     //----------------------INICIAR JANELA--------------------
     public AtualizarProduto() {
         initComponents();
@@ -159,19 +155,19 @@ public class AtualizarProduto extends javax.swing.JFrame {
             ProdutoService.getInstance().atualizarProduto(id, nome, quantidade, preco);
             JOptionPane.showMessageDialog(this, "O produto foi atualizado");
         }
-        catch (ProdutoDuplicadoException ex) { JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
-        catch (ProdutoNaoEncontradoException ex) {JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
-        catch (PrecoMenor0Exception ex) {JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
-        catch (QuantidadeMenor0Exception ex) {JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
-        catch (SQLException ex) {JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
-        catch (EntradaInvalidaException ex) {JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
-        
+        catch (ProdutoDuplicadoException 
+                | ProdutoNaoEncontradoException 
+                | PrecoMenor0Exception 
+                | QuantidadeMenor0Exception 
+                | SQLException 
+                | EntradaInvalidaException ex) 
+        { JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
         
     }//GEN-LAST:event_btnAtualizarActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new AtualizarProduto().setVisible(true));
     }
-    public void preencherCampos(String id, String nome, String quantidade, String preco)
+    private void preencherCampos(String id, String nome, String quantidade, String preco)
     {
         txtId.setText(id);
         txtNome.setText(nome);

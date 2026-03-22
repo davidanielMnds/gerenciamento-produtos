@@ -5,15 +5,15 @@ import java.awt.*;
 
 public class MainFrame extends JFrame{
     //------------------------VARIAVEIS-----------------------------------
-    private CardLayout cardLayout = new CardLayout();
-    private JPanel painelConteudo = new JPanel(cardLayout);
+    private final CardLayout cardLayout = new CardLayout();
+    private final JPanel painelConteudo = new JPanel(cardLayout);
     private boolean sideBarExpandida = false;
     private JPanel sideBar;
-    private FormProdutos formProdutos = new FormProdutos();
+    private final FormProdutos formProdutos = new FormProdutos();
     private JButton btnProdutos;
     private JButton btnAdicionar;
-    private ImageIcon iconProdutos = new ImageIcon(MainFrame.class.getResource("/icons/listar.png"));
-    private ImageIcon iconAdicionar = new ImageIcon(MainFrame.class.getResource("/icons/adicionar.png"));
+    private final ImageIcon iconProdutos = new ImageIcon(MainFrame.class.getResource("/icons/listar.png"));
+    private final ImageIcon iconAdicionar = new ImageIcon(MainFrame.class.getResource("/icons/adicionar.png"));
     
     
     public MainFrame()
@@ -37,7 +37,7 @@ public class MainFrame extends JFrame{
     }
     
     //--------------------------PANEL SIDE BAR--------------------------------------------
-    public JPanel criarSideBar()
+    private JPanel criarSideBar()
     {
         //-----------DEFININDO JANELA------------------
         sideBar = new JPanel();
