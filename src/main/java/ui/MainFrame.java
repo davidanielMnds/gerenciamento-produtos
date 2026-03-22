@@ -28,6 +28,10 @@ public class MainFrame extends JFrame{
         //-------------------------PANELS PRINCIPAIS----------------------
         add(criarSideBar(), BorderLayout.WEST);
         add(painelConteudo, BorderLayout.CENTER);
+        painelConteudo.add(new FormProdutos(), "produtos");
+        painelConteudo.add(new FormAdicionar(), "adicionar");
+        
+        cardLayout.show(painelConteudo, "produtos");
         
     }
     
@@ -55,7 +59,7 @@ public class MainFrame extends JFrame{
         //------------AÇÕES DOS BOTOES------------------
         btnMenu.addActionListener(e -> mudarSideBar());
         btnProdutos.addActionListener(e-> cardLayout.show(painelConteudo, "produtos"));
-        btnAdicionar.addActionListener(e-> cardLayout.show(painelConteudo, "Adicionar"));
+        btnAdicionar.addActionListener(e-> cardLayout.show(painelConteudo, "adicionar"));
         
         return sideBar;
     }
