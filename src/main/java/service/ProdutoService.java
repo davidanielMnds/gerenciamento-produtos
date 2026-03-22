@@ -103,7 +103,8 @@ public class ProdutoService {
         ProdutoDAO.getInstance().atualizarProtudo(produto, id);
     }
     
-    public void deletarPrdoduto(Integer id) throws ProdutoNaoEncontradoException, SQLException
+    //----------------------------------- DELETAR PRODUTO------------------------------------------
+    public void deletarProduto(Integer id) throws ProdutoNaoEncontradoException, SQLException
     {
         if(!produtoExiste(id)) {throw new ProdutoNaoEncontradoException(id);}
         ProdutoDAO.getInstance().deletarProduto(id);
