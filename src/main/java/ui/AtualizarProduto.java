@@ -1,13 +1,25 @@
 package ui;
 
+import exception.EntradaInvalidaException;
+import exception.PrecoMenor0Exception;
+import exception.ProdutoDuplicadoException;
+import exception.ProdutoNaoEncontradoException;
+import exception.QuantidadeMenor0Exception;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import service.ProdutoService;
+import util.ConversorService;
+
 public class AtualizarProduto extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(AtualizarProduto.class.getName());
-
+    
+    //----------------------INICIAR JANELA--------------------
     public AtualizarProduto() {
         initComponents();
     }
     
+    //----------------------INICIAR JANELA COM FORMULARIO PREENCHIDO--------------------
     public AtualizarProduto(String id, String nome, String quantidade, String preco)
     {
         initComponents();
@@ -115,6 +127,7 @@ public class AtualizarProduto extends javax.swing.JFrame {
 
         btnAtualizar.setBackground(new java.awt.Color(0, 153, 51));
         btnAtualizar.setText("Atualizar Produto");
+        btnAtualizar.addActionListener(this::btnAtualizarActionPerformed);
         pnlBotoes.add(btnAtualizar);
 
         pnlFormulario.add(pnlBotoes);
@@ -136,6 +149,25 @@ public class AtualizarProduto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        String id = txtId.getText();
+        String nome = txtNome.getText();
+        String quantidade = txtQuantidade.getText();
+        String preco = txtPreco.getText();
+        try{
+            ProdutoService.getInstance().atualizarProduto(id, nome, quantidade, preco);
+            JOptionPane.showMessageDialog(this, "O produto foi atualizado");
+        }
+        catch (ProdutoDuplicadoException ex) { JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
+        catch (ProdutoNaoEncontradoException ex) {JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
+        catch (PrecoMenor0Exception ex) {JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
+        catch (QuantidadeMenor0Exception ex) {JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
+        catch (SQLException ex) {JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
+        catch (EntradaInvalidaException ex) {JOptionPane.showMessageDialog(this, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}
+        
+        
+    }//GEN-LAST:event_btnAtualizarActionPerformed
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new AtualizarProduto().setVisible(true));
     }
