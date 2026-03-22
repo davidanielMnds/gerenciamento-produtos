@@ -84,6 +84,7 @@ public class FormProdutos extends javax.swing.JPanel {
         pnlNorth.add(btnDeletar);
 
         btnEditar.setText("Editar");
+        btnEditar.addActionListener(this::btnEditarActionPerformed);
         pnlNorth.add(btnEditar);
 
         btnAtualizarPagina.setText("Atualizar");
@@ -134,6 +135,19 @@ public class FormProdutos extends javax.swing.JPanel {
     private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
         
     }//GEN-LAST:event_txtPesquisaActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int linhaSelecionada = tblProdutos.getSelectedRow();
+        if(linhaSelecionada == -1) {new AtualizarProduto().setVisible(true);}
+        else
+        {
+            String id = tblProdutos.getValueAt(linhaSelecionada, 0).toString();
+            String nome = tblProdutos.getValueAt(linhaSelecionada, 1).toString();
+            String quantidade = tblProdutos.getValueAt(linhaSelecionada, 2).toString();
+            String preco = tblProdutos.getValueAt(linhaSelecionada, 3).toString();
+            new AtualizarProduto(id, nome, quantidade, preco).setVisible(true);
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
