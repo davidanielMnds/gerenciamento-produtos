@@ -3,6 +3,7 @@ package ui;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import model.Produto;
 import service.ProdutoService;
@@ -13,8 +14,13 @@ public class FormProdutos extends javax.swing.JPanel {
         initComponents();
         modelo = (DefaultTableModel) tblProdutos.getModel();
         atualizarTabela();
+        txtPesquisa.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+        public void insertUpdate(javax.swing.event.DocumentEvent e) { filtrarTabela(); }
+        public void removeUpdate(javax.swing.event.DocumentEvent e) { filtrarTabela(); }
+        public void changedUpdate(javax.swing.event.DocumentEvent e) { filtrarTabela(); }
+    });
     }
-    //----------------------------------ATUALIZAR TABELA------------------------------------
+    //----------------------------MÉTODO ATUALIZAR TABELA------------------------------------
     public void atualizarTabela()
     {
         try
@@ -27,6 +33,21 @@ public class FormProdutos extends javax.swing.JPanel {
             }
         } catch(SQLException e) {JOptionPane.showMessageDialog(this, "ERRO:" + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);}
     }
+    
+    //----------------------------MÉTODO FILTRAR TABELA-----------------------------------------
+    public void filtrarTabela()
+    {
+        try
+        {
+            String pesquisa = txtPesquisa.getText();
+            List<Produto> lista = ProdutoService.getInstance().listarProdutosPesquisa(pesquisa);
+            modelo.setRowCount(0);
+            for(Produto p : lista)
+            {
+                modelo.addRow(new Object[]{p.getID(),p.getNome(),p.getQuantidade(),p.getPreco()});
+            }
+        } catch(SQLException e) {JOptionPane.showMessageDialog(this, "ERRO:" + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);}
+    } 
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -35,7 +56,6 @@ public class FormProdutos extends javax.swing.JPanel {
         pnlNorth = new javax.swing.JPanel();
         lblPesquisa = new javax.swing.JLabel();
         txtPesquisa = new javax.swing.JTextField();
-        btnPesquisa = new javax.swing.JButton();
         btnDeletar = new javax.swing.JButton();
         btnEditar = new javax.swing.JButton();
         btnAtualizarPagina = new javax.swing.JButton();
@@ -56,10 +76,8 @@ public class FormProdutos extends javax.swing.JPanel {
         pnlNorth.add(lblPesquisa);
 
         txtPesquisa.setPreferredSize(new java.awt.Dimension(200, 26));
+        txtPesquisa.addActionListener(this::txtPesquisaActionPerformed);
         pnlNorth.add(txtPesquisa);
-
-        btnPesquisa.setText("Procurar");
-        pnlNorth.add(btnPesquisa);
 
         btnDeletar.setText("Deletar");
         btnDeletar.addActionListener(this::btnDeletarActionPerformed);
@@ -108,17 +126,20 @@ public class FormProdutos extends javax.swing.JPanel {
         catch(SQLException e) {JOptionPane.showMessageDialog(this, "ERRO:" + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);}
         catch(exception.ProdutoNaoEncontradoException e) {JOptionPane.showMessageDialog(this, "ERRO:" + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);}
     }//GEN-LAST:event_btnDeletarActionPerformed
-
+    
     private void btnAtualizarPaginaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarPaginaActionPerformed
         atualizarTabela();
     }//GEN-LAST:event_btnAtualizarPaginaActionPerformed
+
+    private void txtPesquisaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPesquisaActionPerformed
+        
+    }//GEN-LAST:event_txtPesquisaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtualizarPagina;
     private javax.swing.JButton btnDeletar;
     private javax.swing.JButton btnEditar;
-    private javax.swing.JButton btnPesquisa;
     private javax.swing.JLabel lblPesquisa;
     private javax.swing.JPanel pnlNorth;
     private javax.swing.JScrollPane tabelaProdutos;

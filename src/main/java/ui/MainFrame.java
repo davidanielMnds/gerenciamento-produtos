@@ -9,6 +9,7 @@ public class MainFrame extends JFrame{
     private JPanel painelConteudo = new JPanel(cardLayout);
     private boolean sideBarExpandida = false;
     private JPanel sideBar;
+    private FormProdutos formProdutos = new FormProdutos();
     private JButton btnProdutos;
     private JButton btnAdicionar;
     private ImageIcon iconProdutos = new ImageIcon(MainFrame.class.getResource("/icons/listar.png"));
@@ -28,7 +29,7 @@ public class MainFrame extends JFrame{
         //-------------------------PANELS PRINCIPAIS----------------------
         add(criarSideBar(), BorderLayout.WEST);
         add(painelConteudo, BorderLayout.CENTER);
-        painelConteudo.add(new FormProdutos(), "produtos");
+        painelConteudo.add(formProdutos, "produtos");
         painelConteudo.add(new FormAdicionar(), "adicionar");
         
         cardLayout.show(painelConteudo, "produtos");
