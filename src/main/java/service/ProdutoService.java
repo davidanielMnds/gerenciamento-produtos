@@ -1,5 +1,6 @@
 package service;
 import exception.EntradaInvalidaException;
+import exception.NomeVazioException;
 import exception.PrecoMenor0Exception;
 import exception.ProdutoDuplicadoException;
 import exception.ProdutoNaoEncontradoException;
@@ -49,12 +50,22 @@ public class ProdutoService {
         return ProdutoDAO.getInstance().produtoExiste(nome);
     }
     
-    //--------------------ADICIONAR PRODUTO----------------------------------
+    //--------------------ADICIONAR PRODUTO ----------------------------------
     public void adicionarProduto(String nome, int quantidade, double preco)
             throws ProdutoDuplicadoException, SQLException
     {
         if(produtoExiste(nome)) {throw new ProdutoDuplicadoException(nome);}
         ProdutoDAO.getInstance().adicionarProduto(nome, quantidade, preco);
+    }
+    
+    //---------------------ADICIONAR PRODUTO -STRING-------------------------
+    public void adicionarProduto(String nome, String TXTquantidade, String TXTpreco)
+            throws EntradaInvalidaException, ProdutoDuplicadoException, NomeVazioException, SQLException
+    {   
+        if(nome.isBlank()) {throw new NomeVazioException();}
+        int quantidade = ConversorService.converterInt(TXTquantidade, "quantidade");
+        double preco = ConversorService.converterDouble(TXTpreco, "preço");
+        adicionarProduto(nome, quantidade, preco);
     }
     
     //--------------------LISTAR PRODUTOS------------------------------------
@@ -63,6 +74,7 @@ public class ProdutoService {
         return ProdutoDAO.getInstance().listarProdutos();
     }
     
+    //------------------------ATUALIZAR PRODUTO--------------------------------
     public void atualizarProduto(Integer id, String nome, String quantidadeTexto, String precoTexto)
             throws ProdutoDuplicadoException, ProdutoNaoEncontradoException,
             PrecoMenor0Exception, QuantidadeMenor0Exception, SQLException, EntradaInvalidaException
