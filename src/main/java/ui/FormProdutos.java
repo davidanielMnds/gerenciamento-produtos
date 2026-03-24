@@ -11,6 +11,7 @@ public class FormProdutos extends javax.swing.JPanel {
     private final DefaultTableModel modelo;
     public FormProdutos() {
         initComponents();
+        tblProdutos.setDefaultEditor(Object.class, null);
         modelo = (DefaultTableModel) tblProdutos.getModel();
         atualizarTabela();
         txtPesquisa.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
