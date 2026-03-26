@@ -1,4 +1,4 @@
-package ui;
+package br.gerenciamento.ui;
 
 import javax.swing.*;
 import java.awt.*;

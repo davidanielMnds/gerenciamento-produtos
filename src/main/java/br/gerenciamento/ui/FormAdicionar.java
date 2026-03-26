@@ -1,10 +1,10 @@
-package ui;
+package br.gerenciamento.ui;
 
-import exception.PrecoMenor0Exception;
-import exception.QuantidadeMenor0Exception;
+import br.gerenciamento.exception.PrecoMenor0Exception;
+import br.gerenciamento.exception.QuantidadeMenor0Exception;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import service.ProdutoService;
+import br.gerenciamento.service.ProdutoService;
 
 public class FormAdicionar extends javax.swing.JPanel {
 
@@ -129,9 +129,9 @@ public class FormAdicionar extends javax.swing.JPanel {
             ProdutoService.getInstance().adicionarProduto(nome, quantidade, preco);
             JOptionPane.showMessageDialog(this, "O produto foi adicionado");
         }
-        catch (exception.ProdutoDuplicadoException 
-                | exception.EntradaInvalidaException 
-                | exception.NomeVazioException 
+        catch (br.gerenciamento.exception.ProdutoDuplicadoException 
+                | br.gerenciamento.exception.EntradaInvalidaException 
+                | br.gerenciamento.exception.NomeVazioException 
                 |PrecoMenor0Exception 
                 |QuantidadeMenor0Exception e)
         {JOptionPane.showMessageDialog(this, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);}

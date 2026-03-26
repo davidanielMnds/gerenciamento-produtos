@@ -1,15 +1,15 @@
-package service;
-import exception.EntradaInvalidaException;
-import exception.NomeVazioException;
-import exception.PrecoMenor0Exception;
-import exception.ProdutoDuplicadoException;
-import exception.ProdutoNaoEncontradoException;
-import exception.QuantidadeMenor0Exception;
+package br.gerenciamento.service;
+import br.gerenciamento.exception.EntradaInvalidaException;
+import br.gerenciamento.exception.NomeVazioException;
+import br.gerenciamento.exception.PrecoMenor0Exception;
+import br.gerenciamento.exception.ProdutoDuplicadoException;
+import br.gerenciamento.exception.ProdutoNaoEncontradoException;
+import br.gerenciamento.exception.QuantidadeMenor0Exception;
 import java.sql.SQLException;
 import java.util.List;
-import model.Produto;
-import repository.ProdutoDAO;
-import util.ConversorService;
+import br.gerenciamento.model.Produto;
+import br.gerenciamento.repository.ProdutoDAO;
+import br.gerenciamento.util.ConversorService;
 
 public class ProdutoService {
     //--------------------------ATRIBUTO----------------------

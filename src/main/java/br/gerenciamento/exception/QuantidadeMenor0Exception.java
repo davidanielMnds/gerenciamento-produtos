@@ -1,4 +1,4 @@
-package exception;
+package br.gerenciamento.exception;
 
 public class QuantidadeMenor0Exception extends Exception{
     public QuantidadeMenor0Exception(int quantidade)

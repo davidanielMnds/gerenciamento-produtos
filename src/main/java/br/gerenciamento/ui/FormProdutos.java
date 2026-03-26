@@ -1,11 +1,11 @@
-package ui;
+package br.gerenciamento.ui;
 
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Produto;
-import service.ProdutoService;
+import br.gerenciamento.model.Produto;
+import br.gerenciamento.service.ProdutoService;
 
 public class FormProdutos extends javax.swing.JPanel {
     private final DefaultTableModel modelo;
@@ -128,7 +128,7 @@ public class FormProdutos extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "O produto foi deletado!");
         }
         catch(SQLException 
-                | exception.ProdutoNaoEncontradoException e)
+                | br.gerenciamento.exception.ProdutoNaoEncontradoException e)
         {JOptionPane.showMessageDialog(this, "ERRO:" + e.getMessage(), "ERRO", JOptionPane.ERROR_MESSAGE);}
     }//GEN-LAST:event_btnDeletarActionPerformed
     

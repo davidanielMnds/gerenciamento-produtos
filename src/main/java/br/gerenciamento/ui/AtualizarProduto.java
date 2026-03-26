@@ -1,13 +1,13 @@
-package ui;
+package br.gerenciamento.ui;
 
-import exception.EntradaInvalidaException;
-import exception.PrecoMenor0Exception;
-import exception.ProdutoDuplicadoException;
-import exception.ProdutoNaoEncontradoException;
-import exception.QuantidadeMenor0Exception;
+import br.gerenciamento.exception.EntradaInvalidaException;
+import br.gerenciamento.exception.PrecoMenor0Exception;
+import br.gerenciamento.exception.ProdutoDuplicadoException;
+import br.gerenciamento.exception.ProdutoNaoEncontradoException;
+import br.gerenciamento.exception.QuantidadeMenor0Exception;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import service.ProdutoService;
+import br.gerenciamento.service.ProdutoService;
 
 public class AtualizarProduto extends javax.swing.JFrame {    
     //----------------------INICIAR JANELA--------------------

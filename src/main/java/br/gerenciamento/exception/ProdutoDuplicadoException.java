@@ -1,4 +1,4 @@
-package exception;
+package br.gerenciamento.exception;
 
 public class ProdutoDuplicadoException extends Exception{
     public ProdutoDuplicadoException(String nome)

@@ -1,4 +1,4 @@
-package exception;
+package br.gerenciamento.exception;
 
 public class PrecoMenor0Exception extends Exception{
     public PrecoMenor0Exception(double preco)

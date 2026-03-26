@@ -1,4 +1,4 @@
-package util;
+package br.gerenciamento.util;
 
 import com.formdev.flatlaf.intellijthemes.materialthemeuilite.FlatMTGitHubDarkIJTheme;
 import java.awt.Font;

@@ -1,4 +1,4 @@
-package model;
+package br.gerenciamento.model;
 
 public class Produto {
     

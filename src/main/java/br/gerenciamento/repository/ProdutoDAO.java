@@ -1,4 +1,4 @@
-package repository;
+package br.gerenciamento.repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.Produto;
-import util.ConnectionFactory;
+import br.gerenciamento.model.Produto;
+import br.gerenciamento.util.ConnectionFactory;
 
 public class ProdutoDAO {
     //--------------------------ATRIBUTO--------------------

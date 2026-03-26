@@ -1,8 +1,8 @@
 package br.gerenciamento.produtos;
 
 import javax.swing.SwingUtilities;
-import ui.MainFrame;
-import util.UIConfig;
+import br.gerenciamento.ui.MainFrame;
+import br.gerenciamento.util.UIConfig;
 
 public class GerenciamentoProdutos {
 

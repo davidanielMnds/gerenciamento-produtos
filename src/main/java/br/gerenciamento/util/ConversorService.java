@@ -1,6 +1,6 @@
-package util;
+package br.gerenciamento.util;
 
-import exception.EntradaInvalidaException;
+import br.gerenciamento.exception.EntradaInvalidaException;
 
 public class ConversorService {
     public static int converterInt(String numero, String campo) throws EntradaInvalidaException

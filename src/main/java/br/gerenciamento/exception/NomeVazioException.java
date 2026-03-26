@@ -1,4 +1,4 @@
-package exception;
+package br.gerenciamento.exception;
 
 public class NomeVazioException extends Exception{
     public NomeVazioException()
